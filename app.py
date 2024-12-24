@@ -67,7 +67,7 @@ def extract_finance_suggestions(text, budget):
 
 # Function to send event details to API
 def send_event_to_endpoint(event_details):
-    api_endpoint = "http://localhost:5000/events"
+    api_endpoint = "http://127.0.0.1:5000/events"
     try:
         response = requests.post(api_endpoint, json=event_details)
         if response.status_code == 201:
