@@ -48,8 +48,8 @@ def extract_event_details(text):
     {{
         "event_name": "<event_name>",
         "location": "<location>",
-        "date": "<date>",
-        "time": "<time>"
+        "date": "<date> [mm/dd/yyy]",
+        "time": "<time> [hh:mm [AM or PM]]"
     }}
     Ensure the response is strictly in JSON format without extra commentary.
     """
@@ -67,10 +67,10 @@ def extract_finance_suggestions(text, budget):
 
 # Function to send event details to API
 def send_event_to_endpoint(event_details):
-    api_endpoint = "https://your-api-endpoint.com/submit_event"
+    api_endpoint = "http://localhost:5000/events"
     try:
         response = requests.post(api_endpoint, json=event_details)
-        if response.status_code == 200:
+        if response.status_code == 201:
             return "Event details successfully sent to the endpoint!"
         else:
             return f"Failed to send event details. Status code: {response.status_code}"
@@ -217,5 +217,6 @@ def create_interface():
     return demo
 
 if __name__ == "__main__":
-    create_interface().launch(server_name="0.0.0.0", server_port=7861)
+    # create_interface().launch(server_name="0.0.0.0", server_port=7861)
+    create_interface().launch()
 
