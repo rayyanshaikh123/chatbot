@@ -217,4 +217,5 @@ def create_interface():
     return demo
 
 if __name__ == "__main__":
-    create_interface().launch()
+    create_interface().launch(server_name="0.0.0.0", server_port=7861)
+
