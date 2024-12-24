@@ -1,4 +1,4 @@
-gradio==<latest_version>
-pdfplumber==<latest_version>
-google-generativeai==<latest_version>
-requests==<latest_version>
+gradio
+pdfplumber
+google-generativeai
+requests
