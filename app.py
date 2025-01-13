@@ -60,7 +60,7 @@ def extract_event_details(text):
 # Function to extract finance-related suggestions
 def extract_finance_suggestions(text, budget):
     print(f"Extract Finance Suggestions - Text: {text}, Budget: {budget}")
-    prompt = f"{context}\nPlease retrieve the best products related to '{text}' and provide suggestions for the best products within a budget of {budget}. Include the name of the product and its relevant link. Sample output: [suggestions: Laptop: [name: Zenbook, price: 20k INR], Camera: [name: Nikon D3200, price: 10k INR], etc.] Only give this part and no prefix needed. Display price in INR and remove any extra notes."
+    prompt = f"{context}\nPlease retrieve the best products related to '{text}' and provide suggestions for the best products within a budget of {budget}. Include the name of the product. Sample output: [suggestions: Laptop: [name: Zenbook, price: 20k INR], Camera: [name: Nikon D3200, price: 10k INR], etc.] Only give this part and no prefix needed. Display price in INR and remove any extra notes."
     response = model.generate_content(prompt)
     raw_response = response.text.strip()
     return raw_response
@@ -187,23 +187,23 @@ def create_interface():
                         chat_input.submit(chatbot_response, inputs=[chatbot_general, chat_input, gr.State(value="General"), gr.State(value=False)], outputs=[chatbot_general, chatbot_general])
                         chat_input.submit(clear_inputs, outputs=[chat_input])
 
-                with gr.Tab("Event"):
-                    with gr.Column():
-                        chatbot_event = gr.Chatbot(value=[(None, "You selected Event. Please provide event details.")])
-                        chat_input_event = gr.MultimodalTextbox(interactive=True, placeholder="Enter an event you want to schedule", show_label=False)
+                # with gr.Tab("Event"):
+                #     with gr.Column():
+                #         chatbot_event = gr.Chatbot(value=[(None, "You selected Event. Please provide event details.")])
+                #         chat_input_event = gr.MultimodalTextbox(interactive=True, placeholder="Enter an event you want to schedule", show_label=False)
 
-                        # Submit logic for Event Tab
-                        chat_input_event.submit(chatbot_response, inputs=[chatbot_event, chat_input_event, gr.State(value="Event"), gr.State(value=False), first_prompt], outputs=[chatbot_event, chatbot_event, first_prompt])
-                        chat_input_event.submit(clear_inputs, outputs=[chat_input_event])
+                #         # Submit logic for Event Tab
+                #         chat_input_event.submit(chatbot_response, inputs=[chatbot_event, chat_input_event, gr.State(value="Event"), gr.State(value=False), first_prompt], outputs=[chatbot_event, chatbot_event, first_prompt])
+                #         chat_input_event.submit(clear_inputs, outputs=[chat_input_event])
 
-                with gr.Tab("Finance"):
-                    with gr.Column():
-                        chatbot_finance = gr.Chatbot(value=[(None, "You selected Finance. Please ask a finance-related query.")])
-                        chat_input_finance = gr.MultimodalTextbox(interactive=True, placeholder="Ask me anything related to finance...", show_label=False)
+                # with gr.Tab("Finance"):
+                #     with gr.Column():
+                #         chatbot_finance = gr.Chatbot(value=[(None, "You selected Finance. Please ask a finance-related query.")])
+                #         chat_input_finance = gr.MultimodalTextbox(interactive=True, placeholder="Ask me anything related to finance...", show_label=False)
 
-                        # Submit logic for Finance Tab
-                        chat_input_finance.submit(chatbot_response, inputs=[chatbot_finance, chat_input_finance, gr.State(value="Finance")], outputs=[chatbot_finance, chatbot_finance])
-                        chat_input_finance.submit(clear_inputs, outputs=[chat_input_finance])
+                #         # Submit logic for Finance Tab
+                #         chat_input_finance.submit(chatbot_response, inputs=[chatbot_finance, chat_input_finance, gr.State(value="Finance")], outputs=[chatbot_finance, chatbot_finance])
+                #         chat_input_finance.submit(clear_inputs, outputs=[chat_input_finance])
 
                 with gr.Tab("Suggesstion", elem_id="suggesstion-tab"):
                     with gr.Column():
